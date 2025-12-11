@@ -1,18 +1,26 @@
-# Salesforce DX Project: Next Steps
+# Salesforce Trigger Practice Project
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+This project is a small Salesforce DX exercise focused on building and testing Apex triggers using a clean, professional workflow.  
+It includes a trigger, a handler class, and a full unit test class deployed to a scratch org using Salesforce CLI.
 
-## How Do You Plan to Deploy Your Changes?
+## Included Components
+- **AccountRatingTrigger** – Trigger on Account (before insert/update)
+- **AccountRatingHandler** – Applies a Rating value based on AnnualRevenue
+- **AccountRatingHandlerTest** – Unit tests covering Hot/Warm/Cold logic
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+## How to Deploy
+~~~bash
+sf project deploy start -d force-app
+~~~
 
-## Configure Your Salesforce DX Project
+## How to Run Tests
+~~~bash
+sf apex test run -n AccountRatingHandlerTest -w 10
+~~~
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+## Logic Summary
+- Revenue > 1,000,000 → `Hot`
+- Revenue > 100,000 → `Warm`
+- Otherwise → `Cold`
 
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+This project is part of my continuous practice to strengthen Apex, testing, and Salesforce DX development workflows.
